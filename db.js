@@ -5,11 +5,11 @@ const pool = mysql.createPool({
     waitForConnections: true,
     queueLimit: 0,
     charset: 'utf8mb4',
-    host: process.env.DATABASTE_HOST,
+    host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USERNAME,
     port: process.env.DATABASE_PORT,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_DATABASE,
 })
 
-module.exports = pool
+module.exports = pool       

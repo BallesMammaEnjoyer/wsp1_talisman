@@ -5,6 +5,10 @@ problem jag löst: fått början att funka
 
 2024/04/23 - kollade på videor.
 
+2024/05/13 - jobbade med att försöka hitta ett error, det visade sig vara ett "T" i db.js som förstörde allt.
+
+2024/05/14 - fortsätter följa videorna, fixar artist page. Går nu att lägga till mer artister samt express-validation och sånt.
+
 
 
 DB-planering:
