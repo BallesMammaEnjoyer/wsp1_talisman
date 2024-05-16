@@ -35,8 +35,9 @@ router.post('/new',
         console.log(result)
 
         if (dbResult.affectedRows === 1) {
-            res.send('form posted, artist created')
-
+            //res.send('form posted, artist created')
+            //öres.redirect('/artists/' + dbResult.insertId)
+            res.redirect('/artists')
         } else {
             res.status(500)
         }

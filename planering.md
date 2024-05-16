@@ -9,6 +9,8 @@ problem jag löst: fått början att funka
 
 2024/05/14 - fortsätter följa videorna, fixar artist page. Går nu att lägga till mer artister samt express-validation och sånt.
 
+2024/05/16 - Fortsätter med videorna, jobbade med CSS, börjat på delete och lite random småsaker.
+
 
 
 DB-planering:

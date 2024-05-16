@@ -6,11 +6,12 @@
         {{title}}
     </h1>
     <p><a href="/artists/new">Create new artist</a></p>
-    <ul>
+    <ul class="artists-list">
 
         {% for artist in artists %}
         <li>
             <a href="/artists/{{artist.id}}">{{artist.name}}</a>
+            <a href="/artists/{{artist.id}}/delete">Delete</a>
         </li>
         {% endfor %}
     </ul>

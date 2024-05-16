@@ -10,7 +10,19 @@ body {
 }
 
 form    {
-    display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+input {
+    padding: 0.4rem;
+}
+
+.artists-list{
+    list-style: none;
+}
+
+.artists-list li {
+    display: flex;
+    justify-content: space-between;
 }
