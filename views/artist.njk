@@ -8,7 +8,9 @@
     <p>
         Information om {{artist.name}}.
     </p>
-   
+    {% if artist.image %}
+    <img src="/img/{{artist.image}}" alt="Bild på {{artist.name}}">
+   {% endif %}
     </main>
 
 {% endblock %}      
