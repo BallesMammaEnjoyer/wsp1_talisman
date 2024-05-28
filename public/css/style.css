@@ -26,3 +26,7 @@ input {
     display: flex;
     justify-content: space-between;
 }
+.artists-list li div {
+    display: flex;
+    gap: 1rem;
+}
