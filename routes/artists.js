@@ -72,10 +72,55 @@ router.get('/:id/edit',
         }
     })
 
-router.post('/:id', (req, res) => {
+router.post('/:id/edit',
+    body('name').notEmpty().trim().escape(),
+    param('id').notEmpty().isInt().trim(),
+    async (req, res) => {
 
-    res.send('uppdaterat')
-})
+        const validation = validationResult(req);
+        console.log({ validation })
+
+        if (validation.isEmpty()) {
+            const data = matchedData(req);
+            console.log({data})
+            const [artist] = await pool
+                .promise()
+                .query('SELECT * FROM mille_artist WHERE id = ?', [data.id])
+
+            if (artist.length > 0) {
+                if (artist[0].name === data.name) {
+                    console.log('nothing to update')
+                    return res.redirect('/artists')
+                } else {
+                    const [result] = await pool.promise().query('UPDATE mille_artist SET name = ? WHERE id = ?', [data.name, data.id])
+                    if (result.changedRows === 1) {
+                        console.log('fjisjgis')
+                        res.redirect('/artists/' + data.id)
+                    } else {
+                        console.log('failed to update')
+                        res.redirect(`/artists/${data.id}/edit`)
+                    }
+                }
+            } else {
+                console.log('artist not found')
+                res.redirect('/artists')
+            }
+
+
+            /*
+                        if (dbResult.affectedRows === 1) {
+                            //res.send('form posted, artist created')
+                            //res.redirect('/artists/' + dbResult.insertId)
+                            res.redirect('/artists')
+                        } else {
+                            res.status(500)
+                        }
+            */
+        } else {
+            res.send({ errors: result.array() });
+        }
+
+    })
 
 //delete
 router.post('/:id/delete', param('id').notEmpty().isInt().trim(), async (req, res) => {

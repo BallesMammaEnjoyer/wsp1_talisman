@@ -1,19 +1,27 @@
 {% extends "layout.njk" %}
 
 {% block content %}
+<body>
+        <header>    
+            <div class="container header">
+
+                <h1>
+                    {{title}}
+                </h1>
+                <p><a href="/artists/new" class="btn btn-rounded">Create new artist</a></p>
+                
+            </div>
+        </header>
+</body>
 <main class="wrapper">
-    <h1>
-        {{title}}
-    </h1>
-    <p><a href="/artists/new">Create new artist</a></p>
     <ul class="artists-list">
 
         {% for artist in artists %}
         <li>
-            <a href="/artists/{{artist.id}}">{{artist.name}}</a>
+            <a href="/artists/{{artist.id}}" class="btn btn-rounded">{{artist.name}}</a>
             <div>
 
-                <a href="/artists/{{artist.id}}/edit">Edit</a>
+                <a href="/artists/{{artist.id}}/edit" class="btn btn-rounded">Edit</a>
                 <form action="/artists/{{artist.id}}/delete" method="post">
                     <input type="hidden" value="{{artist.id}}" name="id">
                     <input type="submit" value="delete">
