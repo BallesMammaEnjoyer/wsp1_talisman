@@ -80,8 +80,8 @@ router.get('/:id/edit',
     })
 
 router.post('/:id/edit',
-    body('name').notEmpty().trim().escape(),
-    param('id').notEmpty().isInt().trim(),
+    body('name').notEmpty().trim().escape().isLength({min: 1, max:100}),
+    param('id').notEmpty().isInt().trim().isLength({min: 1, max:100}),
     async (req, res) => {
 
         const validation = validationResult(req);
@@ -124,7 +124,7 @@ router.post('/:id/edit',
                         }
             */
         } else {
-            res.send({ errors: result.array() });
+            res.render("editartist.njk", { title: "Edit artist", error: "Felaktig input"})
         }
 
     })
