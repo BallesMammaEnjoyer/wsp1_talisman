@@ -11,6 +11,10 @@ problem jag löst: fått början att funka
 
 2024/05/16 - Fortsätter med videorna, jobbade med CSS, börjat på delete och lite random småsaker.
 
+2024/05/28 - gjort edit och såg klart alla videor, börjat med css och fixat knappar. La också in en bild och fixade css på den.
+
+2024/05/29 - Gjorde klart CSS, la in mer bilder.
+
 
 
 DB-planering:

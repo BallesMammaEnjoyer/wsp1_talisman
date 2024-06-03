@@ -3,12 +3,16 @@ const router = express.Router()
 const { param, body, matchedData, validationResult } = require('express-validator')
 
 const pool = require('../db')
+const { text } = require('body-parser')
 
 router.get('/', async (req, res) => {
 
     const [artists] = await pool.promise().query('SELECT * FROM mille_artist')
 
+    const [albums] = await pool.promise().query('SELECT * FROM mille_album')
+
     console.log(artists)
+
 
     res.render('artists.njk', {
         title: 'All artists',
@@ -22,10 +26,11 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/new',
-    body('name').notEmpty().trim().escape(),
+    body('name').notEmpty().trim().escape().isLength({min: 1, max:100}),
     async (req, res) => {
 
         const result = validationResult(req);
+        
 
         if (result.isEmpty()) {
             const data = matchedData(req);
@@ -40,7 +45,9 @@ router.post('/new',
                 res.status(500)
             }
         } else {
-            res.send({ errors: result.array() });
+            // res.redirect('newartist')
+            res.render("newartist.njk", { title: "Create new artist", error: "Felaktig input"})
+            
         }
 
     })
@@ -157,7 +164,8 @@ router.get('/:id', param('id').notEmpty().isInt().trim(), async (req, res) => {
         if (artist.length > 0) {
             return res.render('artist.njk', {
                 title: artist[0].name,
-                artist: artist[0]
+                artist: artist[0],
+                
             })
         } else {
             console.log('artist not found error')
